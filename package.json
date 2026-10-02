@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Simple, clean and mobile-friendly website for The MushRoom brand displaying YouTube recipe videos and WhatsApp ordering.",
   "scripts": {
-    "start": "node server.js",
     "dev": "node server.js"
   },
   "keywords": [
