@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The MushRoom — Fresh From Nature | Easy Mushroom Recipes</title>
+  <meta name="description" content="Discover easy, quick and delicious oyster mushroom recipe videos. Fresh mushrooms, simple recipes, better meals from The MushRoom.">
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+  
+  <!-- Modern Clean Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header" id="header">
+    <div class="header-container">
+      <a href="#home" class="brand-link" aria-label="The MushRoom Home">
+        <img src="assets/logo.jpg" alt="The MushRoom Official Logo" class="brand-logo" width="56" height="56">
+        <div class="brand-text">
+          <span class="brand-title">THE MUSHROOM</span>
+          <span class="brand-sub">FRESH FROM NATURE</span>
+        </div>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Navigation Menu" aria-expanded="false">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav class="site-nav" id="siteNav">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#recipes" class="nav-link">Recipes</a></li>
+          <li><a href="#order" class="nav-link nav-btn-order">Order</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-section" id="home">
+      <div class="hero-container">
+        <span class="hero-badge">🍄 The MushRoom • Est. 2026</span>
+        <h1 class="hero-title">THE MUSHROOM</h1>
+        <p class="hero-tagline">“Fresh From Nature”</p>
+        <p class="hero-subtitle">Discover easy and delicious mushroom recipes.</p>
+        <div class="hero-actions">
+          <a href="#recipes" class="btn btn-primary btn-large">
+            EXPLORE RECIPES
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== RECIPE VIDEO SECTION ==================== -->
+    <section class="recipes-section" id="recipes">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <h2 class="section-title">🍄 Mushroom Recipes</h2>
+          <p class="section-subtitle">Watch simple and delicious mushroom recipes.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-wrapper" id="searchWrapper">
+          <div class="search-input-box">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="recipeSearch" 
+              class="recipe-search-input" 
+              placeholder="Search recipes..." 
+              autocomplete="off"
+              aria-label="Search recipes"
+            >
+            <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear search" style="display: none;">
+              &times;
+            </button>
+          </div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="categories-bar" role="tablist" aria-label="Recipe Categories">
+          <button class="category-pill active" data-category="ALL RECIPES" role="tab" aria-selected="true">
+            ALL RECIPES
+          </button>
+          <button class="category-pill" data-category="INDIAN RECIPES" role="tab" aria-selected="false">
+            INDIAN RECIPES
+          </button>
+          <button class="category-pill" data-category="QUICK RECIPES" role="tab" aria-selected="false">
+            QUICK RECIPES
+          </button>
+          <button class="category-pill" data-category="SNACKS" role="tab" aria-selected="false">
+            SNACKS
+          </button>
+          <button class="category-pill" data-category="MAIN COURSE" role="tab" aria-selected="false">
+            MAIN COURSE
+          </button>
+          <button class="category-pill" data-category="HEALTHY RECIPES" role="tab" aria-selected="false">
+            HEALTHY RECIPES
+          </button>
+        </div>
+
+        <!-- Recipe Video Cards Grid -->
+        <div class="recipe-grid" id="recipeGrid" aria-live="polite">
+          <!-- Populated dynamically by app.js -->
+        </div>
+
+        <!-- Empty Results Message -->
+        <div class="no-recipes-found" id="noRecipesMsg" style="display: none;">
+          <div class="empty-icon">🍄</div>
+          <h3>No matching recipes found</h3>
+          <p>Try searching for "garlic", "masala", "fry", "soup" or "rice".</p>
+          <button class="btn btn-secondary" id="resetFilterBtn">View All Recipes</button>
+        </div>
+
+        <!-- Owner Tool: Add YouTube Link -->
+        <div class="add-recipe-box">
+          <button class="btn-toggle-add" id="toggleAddRecipeBtn">
+            <span>+</span> Have a new YouTube recipe link? Click to add
+          </button>
+          <div class="add-recipe-form-card" id="addRecipeCard" style="display: none;">
+            <h4>Add New YouTube Recipe Video</h4>
+            <p>Paste any YouTube link below. The thumbnail will be created automatically.</p>
+            <form id="addRecipeForm">
+              <div class="form-group">
+                <label for="newYoutubeUrl">YouTube Link *</label>
+                <input type="url" id="newYoutubeUrl" placeholder="https://www.youtube.com/watch?v=..." required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="newRecipeTitle">Recipe Name (Optional)</label>
+                  <input type="text" id="newRecipeTitle" placeholder="e.g. Crispy Garlic Mushroom">
+                </div>
+                <div class="form-group">
+                  <label for="newRecipeCategory">Category</label>
+                  <select id="newRecipeCategory">
+                    <option value="ALL RECIPES">ALL RECIPES</option>
+                    <option value="INDIAN RECIPES">INDIAN RECIPES</option>
+                    <option value="QUICK RECIPES">QUICK RECIPES</option>
+                    <option value="SNACKS">SNACKS</option>
+                    <option value="MAIN COURSE">MAIN COURSE</option>
+                    <option value="HEALTHY RECIPES">HEALTHY RECIPES</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="newRecipeDesc">Short Description (Optional)</label>
+                <input type="text" id="newRecipeDesc" placeholder="Easy and delicious oyster mushroom recipe...">
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Add Recipe Video</button>
+                <button type="button" class="btn btn-ghost" id="cancelAddRecipeBtn">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== WHY OYSTER MUSHROOMS SECTION ==================== -->
+    <section class="benefits-section" id="why-mushrooms">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <h2 class="section-title">Why Oyster Mushrooms?</h2>
+          <p class="section-subtitle">Fresh, wholesome and loved in kitchens worldwide</p>
+        </div>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">🍄</div>
+            <h3 class="benefit-title">Nutritious</h3>
+            <p class="benefit-text">A wholesome addition to everyday meals.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">🌱</div>
+            <h3 class="benefit-title">Naturally Good</h3>
+            <p class="benefit-text">A naturally occurring plant-based food.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">🥗</div>
+            <h3 class="benefit-title">Versatile</h3>
+            <p class="benefit-text">Great for curries, fries, soups, rice and more.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">😋</div>
+            <h3 class="benefit-title">Delicious</h3>
+            <p class="benefit-text">Rich savoury umami flavour.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT THE MUSHROOM SECTION ==================== -->
+    <section class="about-section" id="about">
+      <div class="section-container">
+        <div class="about-card">
+          <div class="about-logo-wrapper">
+            <img src="assets/logo.jpg" alt="The MushRoom" class="about-logo-img">
+          </div>
+          <div class="about-content">
+            <h2 class="about-title">About The MushRoom</h2>
+            <p class="about-paragraph">
+              The MushRoom brings fresh oyster mushrooms and easy recipe inspiration to your kitchen.
+            </p>
+            <p class="about-paragraph">
+              Explore our recipes, try something delicious and enjoy the goodness of fresh mushrooms.
+            </p>
+            <div class="about-tagline-badge">
+              <span>Fresh From Nature • Est. 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ORDER ON WHATSAPP SECTION ==================== -->
+    <section class="order-section" id="order">
+      <div class="section-container">
+        <div class="order-card text-center">
+          <div class="order-badge">FRESH HARVEST DELIVERY</div>
+          <h2 class="order-title">Want to make these recipes?</h2>
+          <p class="order-subtitle">Get fresh oyster mushrooms from The MushRoom.</p>
+          
+          <div class="order-cta-box">
+            <a 
+              href="https://wa.me/919130011765?text=Hello%20The%20MushRoom!%20I%20would%20like%20to%20order%20fresh%20oyster%20mushrooms." 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="btn btn-whatsapp btn-large"
+              id="mainWhatsAppBtn"
+            >
+              <svg class="whatsapp-icon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.031 2C6.495 2 2 6.495 2 12.031c0 1.908.536 3.69 1.467 5.213L2 22l4.896-1.425a10.016 10.016 0 005.135 1.456c5.536 0 10.031-4.495 10.031-10.031S17.567 2 12.031 2zm0 18.25c-1.637 0-3.17-.463-4.478-1.266l-.322-.197-2.903.845.856-2.833-.213-.343a8.214 8.214 0 01-1.258-4.425c0-4.57 3.714-8.281 8.318-8.281 4.57 0 8.281 3.711 8.281 8.281 0 4.57-3.711 8.219-8.281 8.219zm4.58-6.192c-.251-.126-1.488-.734-1.718-.818-.231-.084-.4-.126-.569.126-.168.252-.651.818-.798.986-.147.168-.294.189-.545.063-.252-.126-1.063-.392-2.025-1.25-.749-.668-1.255-1.493-1.402-1.745-.147-.252-.016-.388.11-.513.113-.112.252-.294.378-.441.126-.147.168-.252.252-.42.084-.168.042-.315-.021-.441-.063-.126-.569-1.371-.78-1.877-.205-.494-.413-.427-.569-.434-.147-.008-.315-.008-.483-.008-.168 0-.441.063-.672.315-.231.252-.882.861-.882 2.1 0 1.239.903 2.436 1.029 2.604.126.168 1.777 2.713 4.305 3.805.602.26 1.072.415 1.439.531.605.192 1.155.165 1.59.1.485-.072 1.488-.609 1.698-1.197.21-.588.21-1.092.147-1.197-.063-.105-.231-.168-.482-.294z"/>
+              </svg>
+              ORDER ON WHATSAPP
+            </a>
+            <div class="whatsapp-number-display">
+              <span class="phone-label">WhatsApp Number:</span>
+              <a href="tel:+919130011765" class="phone-link">+91 9130011765</a>
+            </div>
+            <p class="order-help-text">Simple and direct — tap to chat with us to order fresh mushrooms anytime!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="assets/logo.jpg" alt="The MushRoom" class="footer-logo" width="60" height="60">
+        <h3 class="footer-title">THE MUSHROOM</h3>
+        <p class="footer-tagline">FRESH FROM NATURE</p>
+        <p class="footer-quote">“Fresh mushrooms. Simple recipes. Better meals.”</p>
+      </div>
+
+      <div class="footer-contact">
+        <p class="footer-wa-label">WhatsApp:</p>
+        <a href="https://wa.me/919130011765" class="footer-wa-number" target="_blank" rel="noopener noreferrer">
+          +91 9130011765
+        </a>
+        <a 
+          href="https://wa.me/919130011765?text=Hello%20The%20MushRoom!%20I%20would%20like%20to%20order%20fresh%20oyster%20mushrooms." 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn btn-whatsapp-small"
+        >
+          ORDER ON WHATSAPP
+        </a>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 The MushRoom. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== FLOATING QUICK WHATSAPP BUTTON ==================== -->
+  <a 
+    href="https://wa.me/919130011765?text=Hello%20The%20MushRoom!%20I%20would%20like%20to%20order%20fresh%20oyster%20mushrooms." 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="floating-whatsapp" 
+    aria-label="Order fresh mushrooms on WhatsApp"
+  >
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.031 2C6.495 2 2 6.495 2 12.031c0 1.908.536 3.69 1.467 5.213L2 22l4.896-1.425a10.016 10.016 0 005.135 1.456c5.536 0 10.031-4.495 10.031-10.031S17.567 2 12.031 2zm0 18.25c-1.637 0-3.17-.463-4.478-1.266l-.322-.197-2.903.845.856-2.833-.213-.343a8.214 8.214 0 01-1.258-4.425c0-4.57 3.714-8.281 8.318-8.281 4.57 0 8.281 3.711 8.281 8.281 0 4.57-3.711 8.219-8.281 8.219zm4.58-6.192c-.251-.126-1.488-.734-1.718-.818-.231-.084-.4-.126-.569.126-.168.252-.651.818-.798.986-.147.168-.294.189-.545.063-.252-.126-1.063-.392-2.025-1.25-.749-.668-1.255-1.493-1.402-1.745-.147-.252-.016-.388.11-.513.113-.112.252-.294.378-.441.126-.147.168-.252.252-.42.084-.168.042-.315-.021-.441-.063-.126-.569-1.371-.78-1.877-.205-.494-.413-.427-.569-.434-.147-.008-.315-.008-.483-.008-.168 0-.441.063-.672.315-.231.252-.882.861-.882 2.1 0 1.239.903 2.436 1.029 2.604.126.168 1.777 2.713 4.305 3.805.602.26 1.072.415 1.439.531.605.192 1.155.165 1.59.1.485-.072 1.488-.609 1.698-1.197.21-.588.21-1.092.147-1.197-.063-.105-.231-.168-.482-.294z"/>
+    </svg>
+    <span class="floating-text">Order on WhatsApp</span>
+  </a>
+
+  <!-- ==================== YOUTUBE VIDEO PLAYER MODAL ==================== -->
+  <div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="video-modal-backdrop" id="modalBackdrop"></div>
+    <div class="video-modal-card">
+      <div class="video-modal-header">
+        <h3 class="modal-recipe-title" id="modalTitle">Recipe Video</h3>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close Video Player">&times;</button>
+      </div>
+      <div class="video-modal-body">
+        <div class="video-iframe-wrapper">
+          <iframe 
+            id="youtubePlayerIframe" 
+            src="" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="video-modal-footer">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" id="modalExternalLink">
+          Watch on YouTube App ↗
+        </a>
+        <button class="btn btn-ghost btn-sm" id="modalCloseFooterBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="recipes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
